@@ -1,6 +1,10 @@
 <template>
   <div id="app"> 
-    <h1>HEllo World</h1>
+    <header></header>
+    <div class='container'>
+      <h1 class='logo'>constellation</h1>
+      <p class='introTxt'><i>Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus</i></p>
+    </div>
   </div>
 </template>
 
