@@ -1,0 +1,67 @@
+.allBlogs {
+    display: flex;
+    padding: 10px;
+}
+
+.blog {
+     box-sizing: border-box;
+     max-width: 275px;
+     width: 100%;
+     
+}
+
+.blogPreview {
+    // max-width: 275px;
+    // width: 100%;
+    // box-sizing: border-box;
+    position: relative;
+    height: 350px;
+    background: #00BCD4;
+    margin: 0;
+    figcaption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+    }
+}
+
+
+.blogPreview {
+    &__title {
+        font: 21px 'Roboto', sans-serif;
+        margin: 0;
+    }
+}
+
+.blogPreview__hashtags {
+    margin: 0;
+    padding: 0;
+    color: $color-green;
+    font: 14px 'Roboto', sans-serif;
+
+    li {
+        text-decoration: none;
+        list-style: none;
+        display: inline-block;
+        font-style: italic;
+
+        &:before {
+            content: '#'
+        }
+    }
+}
+
+.blogPreview__info {
+    border-top: 1px solid $color-gray;
+    margin-top: 10px;
+    padding-top: 10px;
+
+    p {
+        color: $color-gray;
+        font: 14px 'Roboto', sans-serif;
+        padding: 0;
+        margin: 0;
+    }
+}
