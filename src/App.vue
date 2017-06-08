@@ -7,14 +7,17 @@
     </div>
 
     <allBlogs></allBlogs>
+    <hr>
+    <addBlog></addBlog>
   </div>
 </template>
 
 <script>
 import AllBlogs from './components/AllBlogs.vue'
+import AddBlog from './components/AddBlog.vue'
 export default {
 
-  components: {'allBlogs': AllBlogs},
+  components: {'allBlogs': AllBlogs, 'addBlog': AddBlog},
   name: 'app',
   data () {
     return {
