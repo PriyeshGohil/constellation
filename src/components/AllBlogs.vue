@@ -1,6 +1,6 @@
 <template>
   <section class='allBlogs container'>
-      <div class='blog' v-for="blog in blogs">
+      <div class='blog' v-for="(blog, id) in blogs">
         <figure class='blogPreview'>
           <figcaption class="">
             <ul class="blogPreview__hashtags">
@@ -8,6 +8,7 @@
             </ul>
             <h3 class="blogPreview__title">{{blog.title}}</h3>
           </figcaption>
+          <router-link v-bind:to="'/blog/' + id" class="blogPreview__link"></router-link>
         </figure>
 
         <div class="blogPreview__info">
@@ -42,5 +43,4 @@ export default {
 </script>
 
 <style>
-
 </style>

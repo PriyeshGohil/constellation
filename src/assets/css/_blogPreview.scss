@@ -66,3 +66,28 @@
         margin: 0;
     }
 }
+
+.blogPreview__link {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+
+    &:hover {
+        background: #25f1b0;
+        opacity: 0.8;
+        color: white;
+
+        &:after {
+            content: 'View Blog';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
+            left: 0;
+            text-align: center;
+        }
+    }
+}
