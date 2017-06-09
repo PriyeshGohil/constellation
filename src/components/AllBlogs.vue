@@ -30,7 +30,7 @@ export default {
 
   methods: {
     getBlogs() {
-      db.ref('blog').on('value', snap => this.blogs = snap.val());
+      db.ref('blogs').on('value', snap => this.blogs = snap.val());
     },
   },
 

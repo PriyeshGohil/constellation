@@ -33,7 +33,7 @@ export default {
     methods: {
         createBlog() {
             const blogId = db.ref().push().key;
-            db.ref('blog/' + blogId).set(this.blog);
+            db.ref('blogs/' + blogId).set(this.blog);
         },
     },
     computed: {
