@@ -1,23 +1,19 @@
 <template>
   <section class='allBlogs container'>
       <div class='blog' v-for="blog in blogs">
-              <figure class='blogPreview'>
-                <figcaption class="">
-                  <ul v-for='hashtags in blog.hashtags' class="blogPreview__hashtags">
-                      <li>{{hashtags}}</li>
-                  </ul>
-                  <h3 class="blogPreview__title">{{blog.title}}</h3>
-                </figcaption>
-              </figure>
+        <figure class='blogPreview'>
+          <figcaption class="">
+            <ul class="blogPreview__hashtags">
+                <li v-for='hashtags in blog.hashtags'>{{hashtags}}</li>
+            </ul>
+            <h3 class="blogPreview__title">{{blog.title}}</h3>
+          </figcaption>
+        </figure>
 
-              <div class="blogPreview__info">
-                <p><span>{{blog.postedDate}}</span> <a href='#'>/ 1 Comment</a></p>
-              </div>
+        <div class="blogPreview__info">
+          <p><span>{{blog.postedDate}}</span> <a href='#'>/ 1 Comment</a></p>
+        </div>
       </div>
-
-
-      
-            <!--{{blogs}}-->
   </section>
 
 </template>
