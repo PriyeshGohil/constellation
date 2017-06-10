@@ -33,8 +33,11 @@ export default {
     methods: {
         createBlog() {
             const blogId = db.ref().push().key;
+            const blogRefsId = db.ref().push().key;
+
             db.ref('blogs/' + blogId).set(this.blog);
-        },
+            db.ref('blogrefs/' + blogId).set(true);
+        }
     },
     computed: {
         previewHashTags() {
