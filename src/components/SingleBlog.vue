@@ -1,6 +1,5 @@
 <template>
     <div class="container blogPost">
-        <!--{{blog}}-->
         <h2 class='blogPost__title'>{{blog.title}}</h2>
         <img class="blogPost__img" src="https://images.pexels.com/photos/192632/pexels-photo-192632.jpeg?w=940&h=650&auto=compress&cs=tinysrgb"/>
         
@@ -11,12 +10,14 @@
         <p class="blogPost__content">{{blog.content}}</p>
         
         <div class='blogPost__nav'>
-            <a href='#'>Preview</a>
-            <a href='#'>Next</a>
+            <router-link v-if="blogSiblings.prev" v-bind:to="'/blog/' + blogSiblings.prev">prev</router-link>
+             <router-link v-if='blogSiblings.next' v-bind:to="'/blog/' + blogSiblings.next">next</router-link>
         </div>
+
         <div>
             <p>{{blog.postedDate}} / comments 2</p>
         </div>
+
         <div class='blogPost__embed'>
             <pre>add embed code</pre>
         </div>
@@ -30,21 +31,68 @@ export default {
     data() {
         return {
             blog: {},
-            blogId :this.$route.params.id
+            allBlogIndexes: {},
+            blogSiblings: {next: false, prev: false},
         }
     },
 
     methods: {
         getBlog() {
             const blogRef = db.ref('blogs/' + this.blogId);
-            blogRef.once('value', snapshot => this.blog = snapshot.val());
-        }
+            blogRef.on('value', snapshot => {
+                this.blog = snapshot.val()
+                this.getAllBlogIndexes();
+            });
+        },
+
+       
+        getAllBlogIndexes() {
+            db.ref('blogrefs').once('value', snapshot => {
+                this.allBlogIndexes = snapshot.val();
+                this.getSiblingBlogIds();
+            });
+        },
+
+         // prev and next blog ids.
+        getSiblingBlogIds() {
+            const allBlogIndexKeys = Object.keys(this.allBlogIndexes);
+            const totalBlogs = allBlogIndexKeys.length;
+            const currentBlogIndex = allBlogIndexKeys.indexOf(this.blogId);
+            
+            // reset blogSiblings
+            this.blogSiblings.prev = false;
+            this.blogSiblings.next = false;
+
+            if(totalBlogs === 0) return;
+
+            if(currentBlogIndex === 0) {
+                this.blogSiblings.next = allBlogIndexKeys[1];
+                return;
+            }
+
+            if((currentBlogIndex + 1) === totalBlogs) {
+                this.blogSiblings.prev = allBlogIndexKeys[currentBlogIndex - 1];
+                return;
+            }
+
+            this.blogSiblings.next = allBlogIndexKeys[currentBlogIndex + 1];
+            this.blogSiblings.prev = allBlogIndexKeys[currentBlogIndex - 1];
+        },
     },
 
     created() {
         this.getBlog();
-    }
+    },
 
+    computed: {
+        blogId() {
+            return this.$route.params.id
+        }
+    },
+     watch: {
+    // call this method again if the route changes
+    '$route': 'getBlog'
+  }
 }
 </script>
 
@@ -59,6 +107,5 @@ export default {
         width: 100%;
         height: 300px;
     }
-
 
 </style>
