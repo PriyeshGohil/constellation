@@ -18,6 +18,9 @@
             <p>{{blog.postedDate}} / comments 2</p>
         </div>
 
+        <addComment v-bind:currentBlogId='blogId'></addComment>
+        <blogComments v-bind:currentBlogId='blogId'></blogComments>
+
         <div class='blogPost__embed'>
             <pre>add embed code</pre>
         </div>
@@ -26,8 +29,11 @@
 
 <script>
 import {db} from '../firebase.js'
+import AddComment from './Comments/AddComment.vue'
+import BlogComments from './Comments/blogComments.vue'
 
 export default { 
+    components: {'addComment' : AddComment, 'blogComments' : BlogComments},
     data() {
         return {
             blog: {},
