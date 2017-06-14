@@ -1,7 +1,6 @@
 <template>
   <div id="app"> 
-    <header>
-    </header>
+    <Appheader></Appheader>
     <div class='container'>
       <h1 class='logo'>constellation</h1>
       <p class='introTxt'><i>Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus</i></p>
@@ -13,9 +12,10 @@
 <script>
 import AllBlogs from './components/AllBlogs.vue'
 import AddBlog from './components/AddBlog.vue'
+import AppHeader from './components/AppHeader.vue'
 export default {
 
-  components: {'allBlogs': AllBlogs, 'addBlog': AddBlog},
+  components: {'allBlogs': AllBlogs, 'addBlog': AddBlog, 'Appheader' : AppHeader},
   name: 'app',
   data () {
     return {
