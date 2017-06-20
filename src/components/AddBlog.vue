@@ -21,21 +21,23 @@
 </template>
 
 <script>
-import {db} from '../firebase.js'
+import {db, currentUser} from '../firebase.js'
 
 export default {
+    props: ['userId'],
     data() {
         return {
-            blog: {title: '', content: '', hashtags: '', postedDate: '' + new Date()}
+            blog: {userId: this.userId, title: '', content: '', hashtags: '', postedDate: '' + new Date()}
         }
     },
 
     methods: {
         createBlog() {
+            console.log('blog user: ', this.userId);
             const blogId = db.ref().push().key;
             const blogRefsId = db.ref().push().key;
 
-            db.ref('blogs/' + blogId).set(this.blog);
+            db.ref('blogs/' + blogId).set(this.blog); 
             db.ref('blogrefs/' + blogId).set(true);
         }
     },
@@ -46,7 +48,7 @@ export default {
             this.blog.hashtags =  hashtags.filter(hashtag => hashtag.trim());
             return this.blog.hashtags;
         }
-    }
+    },
 }
 </script>
 
