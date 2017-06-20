@@ -3,6 +3,10 @@
     <header class="header">
       <div v-on:click='toggle("showMenu")' class="header__menuIcon"><i class="fa fa-bars" aria-hidden="true"></i></div>
       <div v-on:click='toggle("showSearch")' class="header__search"><i class="fa fa-search" aria-hidden="true"></i>search...</div>
+      <div>
+        <span v-if='userId' span>User: {{userId}} </span>
+        <span v-else>Not Logged In</span>
+        </div>
     </header>
     
     <transition name='slide-menu'>
@@ -50,6 +54,8 @@
 
 <script>
 export default {
+  props: ['userId'],
+
   data() {
       return {
         showMenu: false,
